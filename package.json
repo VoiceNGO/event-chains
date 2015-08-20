@@ -1,10 +1,10 @@
 {
   "name": "event-chains",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An cancelable / singleEvent supported EventEmitter replacement",
-  "main": "index.js",
+  "main": "index.min.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel index.js | uglifyjs -c -m > index.min.js"
   },
   "repository": {
     "type": "git",
