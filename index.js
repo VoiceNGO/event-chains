@@ -15,13 +15,14 @@ class EventEmitter {
     return this;
   }
 
-  addListener(event, listener) {
+  addListener(event, listener, scope) {
     let [eventName, handler] = this.single && !~DEF_EVENTS.indexOf(` ${eventName} `)
       ? [DEFAULT, event]
       : [event, listener];
 
     this.addHandler(eventName, {
-      handler : handler
+        handler : handler
+      , scope   : scope
     });
 
     this.__emit('newListener', [eventName, handler]);
@@ -35,14 +36,15 @@ class EventEmitter {
     return this;
   }
 
-  once(event, listener) {
+  once(event, listener, scope) {
     let [eventName, handler] = this.single && !~DEF_EVENTS.indexOf(` ${eventName} `)
       ? [DEFAULT, event]
       : [event, listener];
 
     this.addHandler(eventName, {
-      handler : handler
-      , once  : true
+        handler : handler
+      , once    : true
+      , scope   : scope
     });
 
     return this;
@@ -135,14 +137,15 @@ Object.defineProperties(EventEmitter.prototype, {
       handlers.forEach(function(handler, index) {
         promise = promise.then(function() {
           let rejected = null;
+          let scope    = handler.scope || self;
 
-          self.stop = function() {
+          scope.stop = function() {
             rejected = Promise.reject(STOPPED);
           };
 
-          let handlerRes = handler.handler.call(self, ...args);
+          let handlerRes = handler.handler.call(scope, ...args);
 
-          self.stop = undefined;
+          scope.stop = undefined;
 
           return rejected || handlerRes;
         });

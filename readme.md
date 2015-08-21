@@ -32,6 +32,11 @@ This is a design decision.  Since _some_ handlers can now be forced to be async
   (see "Event Execution and Cancellation" below), it's appropriate for them
   _all_ to be async.
 
+## Scope
+
+The event listener functions (`.addListener`, `.on`, `.once`) accept an
+  optional 3rd `scope` argument.
+
 ## Single Event Emitters
 
 Taking a cue from [signals](http://millermedeiros.github.io/js-signals/), you
