@@ -140,19 +140,21 @@ Object.defineProperties(EventEmitter.prototype, {
             rejected = Promise.reject(STOPPED);
           };
 
-          let handlerRes = handler.handler(...args);
+          let handlerRes = handler.handler.call(self, ...args);
 
           self.stop = undefined;
 
           return rejected || handlerRes;
-        }).catch((err) => {
-          if (err !== STOPPED) {
-            throw err;
-          }
         });
 
         if (handler.once) {
           handlers.splice(index, 1);
+        }
+      });
+
+      promise.catch((err) => {
+        if (err !== STOPPED) {
+          throw err;
         }
       });
 
