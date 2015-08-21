@@ -1,9 +1,9 @@
 {
   "name": "event-chains",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "An cancelable / singleEvent supported EventEmitter replacement",
   "main": "index.min.js",
-  "homepage": "https://github.com/zyklus/event-chains",
+  "homepage": "https://github.com/zyklus/event-chains#readme",
   "scripts": {
     "build": "babel index.js | uglifyjs -c -m > index.min.js"
   },
@@ -24,6 +24,5 @@
   "license": "Unlicense",
   "bugs": {
     "url": "https://github.com/zyklus/event-chains/issues"
-  },
-  "homepage": "https://github.com/zyklus/event-chains#readme"
+  }
 }
