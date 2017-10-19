@@ -11,17 +11,9 @@
     "type": "git",
     "url": "git://github.com/d9d/event-chains.git"
   },
-  "keywords": [
-    "EventEmitter",
-    "event",
-    "cancelable",
-    "stop",
-    "consume",
-    "consumable",
-    "events"
-  ],
+  "keywords": ["EventEmitter", "event", "cancelable", "stop", "consume", "consumable", "events"],
   "author": "Mark Kahn <m@vouchr.com>",
-  "license": "Unlicense",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/d9d/event-chains/issues"
   }
