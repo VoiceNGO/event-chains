@@ -134,7 +134,7 @@ Object.defineProperties(EventEmitter.prototype, {
       let promise  = Promise.resolve();
       let self     = this;
 
-      handlers.forEach(function(handler, index) {
+      handlers.filter(function(handler, index) {
         promise = promise.then(function() {
           let rejected = null;
           let scope    = handler.scope || self;
@@ -150,9 +150,7 @@ Object.defineProperties(EventEmitter.prototype, {
           return rejected || handlerRes;
         });
 
-        if (handler.once) {
-          handlers.splice(index, 1);
-        }
+        return !handler.once;
       });
 
       promise.catch((err) => {
