@@ -76,7 +76,6 @@ class EventEmitter {
     let eventName      = this.single ? DEFAULT : handler;
     let eventsToRemove = eventName ? {[eventName] : this.events[eventName]} : this.events;
 
-    const self = this
     Object.keys(eventsToRemove)
 
       // push the removeListener event to be the last event removed
@@ -86,7 +85,7 @@ class EventEmitter {
 
       .forEach((eventName) => {
         eventsToRemove[eventName].forEach(function(handlerObj) {
-          self.__emit('removeListener', (self.single ? [] : [eventName]).concat(handlerObj.handler));
+          this.__emit('removeListener', (this.single ? [] : [eventName]).concat(handlerObj.handler));
         }, this);
 
         this.events[eventName] = [];
