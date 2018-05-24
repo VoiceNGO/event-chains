@@ -59,9 +59,10 @@ class EventEmitter {
 
     if (!handlers) { return; }
 
+    const self = this
     handlers = handlers.filter(function(handlerObj) {
       if (handlerObj.handler === handler) {
-        this.__emit('removeListener', (this.single ? [] : [eventName]).concat(handlerObj.handler));
+        self.__emit('removeListener', (self.single ? [] : [eventName]).concat(handlerObj.handler));
         return false;
       }
 
